@@ -25,6 +25,23 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         })),
       ])
     ]),
+    trigger('mostraEstado', [
+      state('formularioFechado', style({})),
+      state('formularioAberto', style({})),
+      transition('formularioFechado => formularioAberto', [
+        style({
+          opacity: 0,
+        }),
+        animate(300, style({
+          opacity: 1
+        }))
+      ]),
+      transition('formularioAberto => void', [
+        animate(300, style({
+          opacity: 0
+        }))
+      ])
+    ])
   ]
 })
 export class ListaTarefasComponent implements OnInit {
