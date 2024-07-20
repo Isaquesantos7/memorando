@@ -4,8 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TarefaService } from 'src/app/service/tarefa.service';
 import { Tarefa } from '../interface/tarefa';
-import { state, style, trigger } from '@angular/animations';
-import { filter } from 'rxjs';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-lista-tarefas',
@@ -19,8 +18,13 @@ import { filter } from 'rxjs';
       state('destacado', style({
         border: '4px solid #B2B6FF',
         filter: 'brightness(92%)'
-      }))
-    ])
+      })),
+      transition('padrao => destacado', [
+        animate('200ms 100ms ease-out', style({
+          transform: 'scale(1.02)'
+        })),
+      ])
+    ]),
   ]
 })
 export class ListaTarefasComponent implements OnInit {
